@@ -9,6 +9,7 @@ import { TodoService } from '../../services/todo.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-todo-list',
@@ -19,7 +20,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatBottomSheetModule, 
     MatFormFieldModule, 
     MatSelectModule,
-    MatMenuModule
+    MatMenuModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.css'
@@ -33,14 +35,22 @@ export class TodoListComponent {
 
   originalTodoList: Todo[] = [];
 
+  loading = false;
+
   private _bottomSheet = inject(MatBottomSheet);
 
   constructor() {
     // Fetch the todo list from the service
+    this.fetchTodos();
+  }
+
+  fetchTodos(){
+    this.loading = true;
     this.todoService.getTodos().subscribe(todos => {
       this.todoList = [...todos];
       this.originalTodoList = [...todos];
       console.log('Fetched Todos:', todos);
+      this.loading = false;
     });
   }
 

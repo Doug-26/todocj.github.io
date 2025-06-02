@@ -1,33 +1,40 @@
 <div class="container">
     <div class="todo-list-container p-3 border rounded">
         <h1>Todo App</h1>
-        @for (item of todoList; track $index) {
-        <div class="todo-item-container border shadow-sm mb-2 rounded p-lg-3 p-3" (click)="updateTodo(item)">
-            <div class="d-flex gap-2">
-                @if (item.completed) {
-                <mat-icon class="text-success" role="button"
-                    (click)="markTodoAsNotCompleted(item); $event.stopPropagation()">check_circle</mat-icon>
-                } @else {
-                <mat-icon class="text-secondary" role="button"
-                    (click)="markTodoAsCompleted(item); $event.stopPropagation()">radio_button_unchecked</mat-icon>
-                }
-                <span class="todo-text fw-bold" [ngClass]="{'text-decoration-line-through': item.completed}">{{
-                    item.title }}</span>
-                @if (item.priority === 'high') {
-                <span class="badge rounded-pill ms-2 text-bg-danger">{{ item.priority | titlecase }}</span>
-                } @else if (item.priority === 'medium') {
-                <span class="badge rounded-pill ms-2 text-bg-warning">{{ item.priority | titlecase }}</span>
-                } @else {
-                <span class="badge rounded-pill ms-2 text-bg-secondary">{{ item.priority | titlecase }}</span>
-                }
-                <mat-icon class="ms-auto text-danger" fontIcon="delete" role="button"
-                    (click)="deleteTodo(item); $event.stopPropagation()"></mat-icon>
-            </div>
-            <small class="text-muted">
-                Duedate: {{ item.duedate | date: 'short' }}
-            </small>
+        @if(loading) {
+        <div class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
+            <mat-spinner></mat-spinner>
         </div>
+        } @else {
+            @for (item of todoList; track $index) {
+            <div class="todo-item-container border shadow-sm mb-2 rounded p-lg-3 p-3" (click)="updateTodo(item)">
+                <div class="d-flex gap-2">
+                    @if (item.completed) {
+                    <mat-icon class="text-success" role="button"
+                        (click)="markTodoAsNotCompleted(item); $event.stopPropagation()">check_circle</mat-icon>
+                    } @else {
+                    <mat-icon class="text-secondary" role="button"
+                        (click)="markTodoAsCompleted(item); $event.stopPropagation()">radio_button_unchecked</mat-icon>
+                    }
+                    <span class="todo-text fw-bold" [ngClass]="{'text-decoration-line-through': item.completed}">{{
+                        item.title }}</span>
+                    @if (item.priority === 'high') {
+                    <span class="badge rounded-pill ms-2 text-bg-danger">{{ item.priority | titlecase }}</span>
+                    } @else if (item.priority === 'medium') {
+                    <span class="badge rounded-pill ms-2 text-bg-warning">{{ item.priority | titlecase }}</span>
+                    } @else {
+                    <span class="badge rounded-pill ms-2 text-bg-secondary">{{ item.priority | titlecase }}</span>
+                    }
+                    <mat-icon class="ms-auto text-danger" fontIcon="delete" role="button"
+                        (click)="deleteTodo(item); $event.stopPropagation()"></mat-icon>
+                </div>
+                <small class="text-muted">
+                    Duedate: {{ item.duedate | date: 'short' }}
+                </small>
+            </div>
+            }
         }
+
     </div>
 
     <button mat-flat-button class="add-todo-button mt-3" (click)="addNewTodo()">
