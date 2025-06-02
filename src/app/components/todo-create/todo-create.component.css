@@ -1,0 +1,23 @@
+.form-fields-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.flex-field {
+    flex: 1 1 220px;
+    min-width: 0;
+}
+
+@media (max-width: 767.98px) {
+    .form-fields-row {
+        flex-direction: column;
+    }
+
+    .flex-field {
+        width: 100%;
+        min-width: unset;
+        flex: 0 0 auto;
+        /* Prevents height stretch */
+    }
+}

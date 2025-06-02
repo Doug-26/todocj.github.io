@@ -7,15 +7,15 @@
     }
 
     <form [formGroup]="todoForm">
-        <div class="d-flex gap-2">
+        <div class="form-fields-row">
 
-            <mat-form-field appearance="outline" class="w-50">
+            <mat-form-field appearance="outline" class="flex-field">
                 <mat-label>Title</mat-label>
                 <input matInput formControlName="title" type="text" placeholder="Type title here" required>
                 <mat-error *ngIf="todoForm.get('title')?.hasError('required')">Title is required</mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="flex-field">
                 <mat-label>Duedate</mat-label>
                 <input matInput [matDatepicker]="picker" formControlName="duedate" required>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -23,7 +23,7 @@
                 <mat-error *ngIf="todoForm.get('duedate')?.hasError('required')">Duedate is required</mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="flex-field">
                 <mat-label>Priority</mat-label>
                 <mat-select formControlName="priority" required>
                     <mat-option value="high">High</mat-option>
@@ -31,10 +31,6 @@
                     <mat-option value="low">Low</mat-option>
                 </mat-select>
             </mat-form-field>
-
-            <!-- <button mat-flat-button class="add-todo-button">
-                <mat-icon>add</mat-icon><span>Add Todo</span>
-            </button> -->
 
             @if (data.todo) {
             <button mat-flat-button color="primary" type="button" (click)="updateTodo()" [disabled]="todoForm.invalid">
@@ -48,6 +44,5 @@
             </button>
             }
         </div>
-
     </form>
 </div>

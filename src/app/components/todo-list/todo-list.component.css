@@ -12,12 +12,12 @@
     background-color:  rgba(0, 0, 0, 0.2);
 }
 
-::ng-deep .mat-bottom-sheet-container-large,
+/* ::ng-deep .mat-bottom-sheet-container-large,
 ::ng-deep .mat-bottom-sheet-container-xlarge,
 ::ng-deep .mat-bottom-sheet-container-medium {
     min-width: 1320px !important;
     width: 100%;
-}
+} */
 
 /* .add-todo-button {
     bottom: 30px;
