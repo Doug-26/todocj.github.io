@@ -6,10 +6,10 @@
             <div class="d-flex gap-2">
                 @if (item.completed) {
                 <mat-icon class="text-success" role="button"
-                    (click)="markTodoAsNotCompleted(item)">check_circle</mat-icon>
+                    (click)="markTodoAsNotCompleted(item); $event.stopPropagation()">check_circle</mat-icon>
                 } @else {
                 <mat-icon class="text-secondary" role="button"
-                    (click)="markTodoAsCompleted(item)">radio_button_unchecked</mat-icon>
+                    (click)="markTodoAsCompleted(item); $event.stopPropagation()">radio_button_unchecked</mat-icon>
                 }
                 <span class="todo-text fw-bold" [ngClass]="{'text-decoration-line-through': item.completed}">{{
                     item.title }}</span>
@@ -21,7 +21,7 @@
                 <span class="badge rounded-pill ms-2 text-bg-secondary">{{ item.priority | titlecase }}</span>
                 }
                 <mat-icon class="ms-auto text-danger" fontIcon="delete" role="button"
-                    (click)="deleteTodo(item)"></mat-icon>
+                    (click)="deleteTodo(item); $event.stopPropagation()"></mat-icon>
             </div>
             <small class="text-muted">
                 Duedate: {{ item.duedate | date: 'short' }}
@@ -52,15 +52,4 @@
             <span>Reset</span>
         </button>
     </mat-menu>
-
-    <!-- <mat-form-field appearance="outline" class="mt-3 ms-2">
-        <mat-label>Filter by Priority</mat-label>
-        <mat-icon>sort</mat-icon>
-        <mat-select (selectionChange)="sortTodosByPriority($event.value)">
-            <mat-option value="reset">Reset</mat-option>
-            <mat-option value="desc">High to Low</mat-option>
-            <mat-option value="asc">Low to High</mat-option>
-        </mat-select>
-    </mat-form-field> -->
-
 </div>
