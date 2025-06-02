@@ -1,0 +1,40 @@
+.todo-list-container {
+    margin-top: 20px;
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+}
+
+.todo-item-container {
+    cursor: pointer;
+}
+
+.todo-item-container:hover {
+    background-color:  rgba(0, 0, 0, 0.2);
+}
+
+::ng-deep .mat-bottom-sheet-container-large,
+::ng-deep .mat-bottom-sheet-container-xlarge,
+::ng-deep .mat-bottom-sheet-container-medium {
+    min-width: 1320px !important;
+    width: 100%;
+}
+
+/* .add-todo-button {
+    bottom: 30px;
+    right: 30px;
+    position: fixed;
+} */
+
+/* :host ::ng-deep .mat-bottom-sheet-content-xlarge,
+:host ::ng-deep .mat-bottom-sheet-content-large,
+:host ::ng-deep .mat-bottom-sheet-content-medium {
+    min-width: 1320px !important;
+    width: 100%;
+} */
+
+/* .mat-bottom-sheet-container-large {
+    min-width: 1320px !important;
+    width: 100%;
+} */
+
+

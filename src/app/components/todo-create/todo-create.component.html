@@ -1,0 +1,53 @@
+<div class="p-3">
+
+    @if (data.todo) {
+    <h3>Edit Todo</h3>
+    } @else {
+    <h3>Create New Todo</h3>
+    }
+
+    <form [formGroup]="todoForm">
+        <div class="d-flex gap-2">
+
+            <mat-form-field appearance="outline" class="w-50">
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title" type="text" placeholder="Type title here" required>
+                <mat-error *ngIf="todoForm.get('title')?.hasError('required')">Title is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Duedate</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="duedate" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="todoForm.get('duedate')?.hasError('required')">Duedate is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Priority</mat-label>
+                <mat-select formControlName="priority" required>
+                    <mat-option value="high">High</mat-option>
+                    <mat-option value="medium">Medium</mat-option>
+                    <mat-option value="low">Low</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- <button mat-flat-button class="add-todo-button">
+                <mat-icon>add</mat-icon><span>Add Todo</span>
+            </button> -->
+
+            @if (data.todo) {
+            <button mat-flat-button color="primary" type="button" (click)="updateTodo()" [disabled]="todoForm.invalid">
+                <mat-icon>check</mat-icon>
+                Update Todo
+            </button>
+            } @else {
+            <button mat-flat-button color="primary" type="button" (click)="createTodo()" [disabled]="todoForm.invalid">
+                <mat-icon>check</mat-icon>
+                Create Todo
+            </button>
+            }
+        </div>
+
+    </form>
+</div>
